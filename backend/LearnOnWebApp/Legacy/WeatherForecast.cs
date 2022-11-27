@@ -1,4 +1,4 @@
-namespace LearnOnWebApp
+namespace LearnOnWebApp.Legacy
 {
     public class WeatherForecast
     {

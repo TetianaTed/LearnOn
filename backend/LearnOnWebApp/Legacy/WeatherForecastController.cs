@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace LearnOnWebApp.Controllers
+namespace LearnOnWebApp.Legacy
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -1,4 +1,4 @@
-﻿namespace LearnOnWebApp.Models
+﻿namespace LearnOnWebApp.Legacy
 {
     public class Product
     {
@@ -16,6 +16,6 @@
             Name = name;
             Category = category;
             Price = price;
-        }   
+        }
     }
 }

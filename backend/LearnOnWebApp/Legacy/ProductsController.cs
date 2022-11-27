@@ -2,18 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using System.Xml.Linq;
-using LearnOnWebApp.Models;
 
-namespace LearnOnWebApp.Controllers
+namespace LearnOnWebApp.Legacy
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private static readonly int _myNumber= 5;
-        
+        private static readonly int _myNumber = 5;
 
-        private  readonly ISet<Product> _products = new HashSet<Product>()
+
+        private readonly ISet<Product> _products = new HashSet<Product>()
         {
             new Product(id:1, name:"Stolik kawowy", category:"Meble", price:1622.37m),
             new Product(id:2, name:"Lezak ogrodowy", category:"Ogrod", price:129.50m),
@@ -31,11 +30,11 @@ namespace LearnOnWebApp.Controllers
         {
             Console.WriteLine("Input name is: " + name);
             System.Diagnostics.Debug.WriteLine("Input name is: " + name);
-            _products.Where(product=> product.Id == 3).First().Name = "Lozko";
-            
+            _products.Where(product => product.Id == 3).First().Name = "Lozko";
+
             foreach (var product in _products)
             {
-                Console.WriteLine(product.Name);    
+                Console.WriteLine(product.Name);
             }
 
             ProductsController Test1 = new ProductsController();
@@ -49,7 +48,7 @@ namespace LearnOnWebApp.Controllers
             Console.WriteLine(_myNumber);
         }
 
-        
+
 
 
 

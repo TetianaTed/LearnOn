@@ -2,39 +2,40 @@
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace LearnOnWebApp.Controllers
+namespace LearnOnWebApp.Integration.Account.Domain
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AcountContoller : ControllerBase
+    public class AccountContoller : ControllerBase
     {
-        // GET: api/<AcountContoller>
+        // GET: api/<AccountContoller>
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<AcountContoller>/5
+        // GET api/<AccountContoller>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<AcountContoller>
+
+        // POST api/<AccountContoller>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/<AcountContoller>/5
+        // PUT api/<AccountContoller>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<AcountContoller>/5
+        // DELETE api/<AccountContoller>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
