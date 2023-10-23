@@ -1,0 +1,126 @@
+﻿<!--<script src="js/my_scripts/avatar.js"></script>-->
+<script>
+	/*
+		$("form").validate({
+		ignore: ".ignore"
+	});*/
+
+	function readURL(input) {
+		if(input === null){
+			$('#avatar_img').attr('src', '/img/avatar.png');
+			this.avatar = null;
+		}
+		else {
+				if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#avatar_img').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+	}
+	
+	$("#avatar_upload").change(function () {
+		readURL(this);
+	});
+</script>
+
+<div class="container">
+   <h2>Edycja konta</h2>
+   <hr />
+   
+   <div class="alert alert-danger" role="alert" ng-show = "editAccountCtrl.errors">
+		<p>{{editAccountCtrl.errors}}</p>
+	</div>
+	
+    <div class="alert alert-success" role="alert" ng-show = "editAccountCtrl.success">
+		<p>{{editAccountCtrl.success}}</p>
+	</div>
+	
+	<form class="form-horizontal" role="form" name="form" ng-submit="editAccountCtrl.update(account)">
+		<div class="form-group">
+			<label for="oldPassword" class="col-sm-3 control-label">Stare Hasło</label>
+			<div class="col-sm-9">
+				<input type="password" id="oldPassword" placeholder="Hasło" class="form-control" ng-model="account.oldPassword" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="newPassword" class="col-sm-3 control-label">Nowe Hasło</label>
+			<div class="col-sm-9">
+				<input type="password" id="newPassword" placeholder="Nowe hasło" class="form-control" ng-model="account.newPassword" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="repeatPassword" class="col-sm-3 control-label">Powtórz nowe hasło</label>
+			<div class="col-sm-9">
+				<input type="password" id="repeatPassword" placeholder="Powtórz nowe hasło" class="form-control" ng-model="account.repeatPassword" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<!-- Avatar Column-->
+			<div class="row">
+				<label class="col-sm-3 control-label">Awatar</label>
+					<div class="row">
+						<div class="col-sm-1">
+							<img  id="avatar_img" ng-src ="{{editAccountCtrl.avatar || '/img/avatar.png'}}"/>
+							<!--<img ng-show ="form.file.$valid"   class="thumb">	-->						
+						</div>
+						
+						<div class="col-sm-6">
+							<input type="file" name="file" accept="image/*" file-model = "editAccountCtrl.myFile" id="avatar_upload" />
+							<br />
+						</div>
+						
+						<div class="col-sm-4">
+							<a  ng-click = "editAccountCtrl.deleteAvatar = true" ng-show ="editAccountCtrl.avatar != null &&  editAccountCtrl.avatar != ''"class="btn btn-primary btn-danger" data-toggle="modal" data-target="#myModal">Usuń awatar</a>
+						</div>				
+					</div>	
+			</div>
+		</div>
+		
+		<div class="form-actions">
+			<div class="row">
+				<div class="col-sm-offset-2 col-sm-3">
+					<button type="submit" class="btn btn-primary btn-block">Zaktualizuj</button>
+				</div>
+			
+				<div class="col-sm-3">
+					<input type="reset" type="button" class="btn btn-warning" value="Wyczyść" onclick="readURL(null)" ng-click="editAccountCtrl.avatar = editAccountCtrl.avatar != null ? editAccountCtrl.avatar : null; account = null; editAccountCtrl.myFile = null"></input>
+				</div>
+				
+				<div class="col-sm-3">
+					<button id="btnRemove" ng-click = "editAccountCtrl.deleteAvatar = false" type="button" class="btn btn-primary btn-danger" data-toggle="modal" data-target="#myModal">Usuń konto</button>
+				</div>
+				
+				
+			</div>
+		</div>
+							
+	</form> <!-- /form -->	
+ </div> <!-- ./container -->
+ 
+ 
+
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Usuwanie {{editAccountCtrl.deleteAvatar ? 'awatara' : 'konta' }}</h4>
+				</div>
+				<div class="modal-body">
+					Czy na pewno chcesz usunąć {{editAccountCtrl.deleteAvatar ? 'awatar' : 'konto' }} ?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Nie</button>
+					<button type="button" class="btn btn-danger"  ng-click="editAccountCtrl.deleteAvatar ? editAccountCtrl.deleteAwatar() : editAccountCtrl.deleteAccount()">Tak</button>
+				</div>
+			</div>
+		</div>
+</div>
+
+ 

@@ -1,0 +1,121 @@
+#example response:
+#[
+#  {
+#    "id": 1,
+#    "userId": 1,
+#    "name": "Kolory",
+#    "description": "Rozdzial o kolorach",
+#    "createDate": "2017-12-12",
+#    "lang1Name": "Polski",
+#    "lang2Name": "Angielski",
+#    "words": [
+#      {
+#        "imageUrl": "",
+#        "word1": {
+#          "name": "Pomarańczowy",
+#          "soundUrl": ""
+#        },
+#        "word2": {
+#          "name": "Orange",
+#          "soundUrl": ""
+#        }
+#      },
+#      {
+#        "imageUrl": "",
+#        "word1": {
+#          "name": "Zielony",
+#          "soundUrl": ""
+#        },
+#        "word2": {
+#          "name": "Green",
+#          "soundUrl": ""
+#        }
+#      }
+#    ]
+#  }
+#]
+
+
+### find All
+GET http://localhost:5000/api/chapters
+Authorization: Basic amFuLm5vd2FrQGdtYWlsLmNvbTphZG1pbg==
+
+### find by Id
+GET http://localhost:5000/api/chapters/1
+Authorization: Basic amFuLm5vd2FrQGdtYWlsLmNvbTphZG1pbg==
+
+### find by userId
+GET http://localhost:5000/api/chapters/?userId=1
+Authorization: Basic amFuLm5vd2FrQGdtYWlsLmNvbTphZG1pbg==
+
+
+### create
+POST http://localhost:5000/api/chapters/
+Authorization: Basic amFuLm5vd2FrQGdtYWlsLmNvbTphZG1pbg==
+Content-Type: application/json
+
+{
+  "userId": 4,
+  "name": "test21",
+  "description": "test",
+  "lang1Name": "t3",
+  "lang2Name": "t4",
+  "words": [
+    {
+      "word1": {
+        "name": "a1"
+      },
+      "word2": {
+        "name": "b1"
+      }
+    },
+    {
+      "word1": {
+        "name": "a2"
+      },
+      "word2": {
+        "name": "b2"
+      }
+    }
+  ]
+}
+
+### update
+PUT http://localhost:5000/api/chapters/1
+Authorization: Basic amFuLm5vd2FrQGdtYWlsLmNvbTphZG1pbg==
+Content-Type: application/json
+
+{
+  "name": "testing2",
+  "description": "t2",
+  "lang1Name": "j1",
+  "lang2Name": "j2",
+  "words": [
+    {
+      "word1": {
+        "name": "j5"
+      },
+      "word2": {
+        "name": "k5"
+      }
+    },
+    {
+      "word1": {
+        "name": "h6"
+      },
+      "word2": {
+        "name": "j6"
+      }
+    }
+  ],
+  "userId": 4,
+  "id": 4
+}
+
+### delete
+DELETE http://localhost:5000/api/chapters/11
+Authorization: Basic amFuLm5vd2FrQGdtYWlsLmNvbTphZG1pbg==
+Content-Type: application/json
+
+
+

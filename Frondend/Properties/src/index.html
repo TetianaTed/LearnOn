@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pl-PL" ng-app="LearnOn">
+<head>
+<meta charset="UTF-8">
+<title>LearnON- Platforma edukacyjna</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="Michał Stężała, Mateusz Malarski" />
+
+<!-- css -->
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
+
+<link href="css/index_dropdown.css" rel="stylesheet" />
+<link href="css/chapter.css" rel="stylesheet" /> 
+<link href="css/memories.css" rel="stylesheet" /> 
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div id="wrapper" class="home-page">
+	<!-- start header -->
+	<header>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" ng-href='#!/'><img src="img/logo.png" alt="logo"/></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a ng-href="#!/home"><span class="fa fa-home fa-2x"></span>START</a></li> 
+						<li ng-show="{{$root.globals.currentUser}}"><a ng-href='#!/chapter/show_chapters'><span class="fa fa-desktop fa-2x"></span>Moje rozdziały</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li/><li/><li/><li/>
+						<li ng-hide="{{$root.globals.currentUser}}"><a ng-href='#!/account/login'>Zaloguj</a></li>
+						<li ng-hide="{{$root.globals.currentUser}}"><a ng-href='#!/account/register'>Zarejestruj</a></li>
+					</ul>
+					
+					<ul class="nav navbar-nav nav-right fixed-top" ng-show="{{$root.globals.currentUser}}">
+						<li class="fixed-top">	
+							<img ng-src="{{ $root.globals.currentUser.avatarUrl || '/img/avatar.png'}}" class="profile-image img-circle special-img"/> <!-- TODO DOSTROIC AVATAR DO RESPOSYWNOSCI -->
+							<p>Witaj<a ng-href='#!/account/profile'>{{$root.globals.currentUser.firstName}}</a>! &nbsp;&nbsp;</p>
+							<div class="fixed-top"> </div>
+							<div class="clearfix"> </div>
+						</li>	
+						<li/><li/><li/><li/>
+						<li dropdown dropdown-toggle class ="fixed-top">
+							<a class="dropdown-toggle " data-toggle="dropdown">
+								<i class="fa fa-cog fa-2x"></i>
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a ng-href='#!/account/edit'><i class="fa fa-cog"></i>Edytuj</a></li>
+								<li><a ng-click="logout()"><i class="fa fa-sign-out"></i>Wyloguj</a></li>
+								<div class="fixed"> </div>
+								<div class="clearfix"> </div>
+							</ul>
+						</li>
+						
+						
+						<!--	</div>
+						</li>
+						
+						<li class="dropdown dropdown-toggle">
+							<a class="dropdown-toggle pull-left" data-toggle="dropdown">
+								<i class="fa fa-cog fa-2x"></i>
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a ng-href='#!/account/edit'><i class="fa fa-cog"></i>Edytuj</a></li>
+								<li><a ng-click="logout()"><i class="fa fa-sign-out"></i>Wyloguj</a></li>
+							</ul>
+						</li>-->
+					</ul>	
+                </div>
+            </div>
+        </div>
+	</header>
+	<!-- end header -->
+	
+	
+	
+	<section id="content" class="main-wrapper">
+	<!--<div class="container"> -->
+		<!-- MAIN CONTENT -->
+		<div ng-view></div>
+	<!--</div> -->
+
+	</section>
+
+	<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="widget">
+					<h5 class="widgetheading">Kontakt</h5>
+					<address>
+					<strong>LearOn</strong><br>
+					Wybrzeże Wyspańskiego 37<br>
+					 50-412 Wrocław</address>
+					<p>
+						<i class="icon-phone"></i><a href="tel:+48713494345">(71) 349-43-45</a><br>
+						<i class="icon-envelope-alt"></i><a href="mailto:contact@leanOn.getforge.io">contact@leanOn.getforge.io</a>
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="widget">
+					<h5 class="widgetheading">Odnośniki z menu</h5>
+					<ul class="link-list">
+						<li ng-hide="{{$root.globals.currentUser}}"><a ng-href='#!/account/register'> Zarejestruj</a></li>
+						<li ng-hide="{{$root.globals.currentUser}}"><a ng-href='#!/account/login'>Zaloguj</a></li>
+						<li ng-show="{{$root.globals.currentUser}}"><a ng-href='#!/chapter/show_chapters'>Moje rozdziały</a></li>
+						<li><a ng-href='#!/home/contact'>Formularz kontaktowy</a></li>
+					</ul>
+				</div>
+			</div>			
+		</div>
+	<div id="sub-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="copyright">
+						<p>
+							<span>&copy; LearnOn Education 2017 Wszystkie prawa zastrzeżone.</span>
+							<span>Strona wykonana przez Mateusz Malarski i Michał Stężała w ramach realizacji kursu Interakcja Człowiek-Komputer na Politechnice Wrocławskiej</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</footer>
+</div>
+<a class="scrollup"><i class="fa fa-angle-up active"></i></a>
+
+
+<!-- javascript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/js/vendor/jquery-3.2.1.min.js"></script>
+<script src="/js/vendor/bootstrap.min.js"></script>
+
+<script src="/js/vendor/angular.min.js"></script>
+<script src="/js/vendor/angular-route.min.js"></script>
+<script src="/js/vendor/angular-cookies.min.js"></script>
+
+
+<!--<script src="js/vendor/angular-css.js"></script>-->
+
+<!-- My Scripts -->
+<script src="js/vendor/my_scripts/custom.js"></script>
+<!--<script src="js/vendor/my_scripts/avatar.js"></script>-->
+<script src="js/vendor/my_scripts/contact.js"></script>
+
+<script src="/js/main-app.js"></script>
+
+<!-- Directives -->
+<script src="/js/directives/file-model.js"></script>
+
+<!-- Services -->
+<script src="/js/services/backend-configuration.js"></script>
+<script src="/js/services/account-service.js"></script>
+<script src="/js/services/auth-service.js"></script>
+<script src="/js/services/message-service.js"></script>
+<script src="/js/services/chapter-service.js"></script>
+<script src="/js/vendor/ng-imgur.js"></script>
+
+<!-- Resources -->
+<!-- Controllers -->
+<script src="/js/controllers/account/account-controller.js"></script>
+<script src="/js/controllers/account/profile-account-controller.js"></script>
+<script src="/js/controllers/account/edit-account-controller.js"></script>
+ 
+<script src="/js/controllers/chapter/show-chapters-controller.js"></script>
+<script src="/js/controllers/chapter/create-chapter-controller.js"></script>
+<script src="/js/controllers/chapter/show-chapter-details-controller.js"></script>
+<script src="/js/controllers/chapter/edit-chapter-controller.js"></script>
+
+<script src="/js/controllers/game/memories-controller.js"></script>
+<script src="/js/controllers/game/test-controller.js"></script>
+<!-- Filters -->
+
+
+<!--Models -->
+<!--<script src="/js/models/create-account-model.js"></script>-->
+<!--JSON examples -->
+<!--<script src="/js/examples_json/accounts.js"></script>-->
+</body>
+</html>

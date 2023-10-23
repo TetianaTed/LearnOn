@@ -1,0 +1,80 @@
+<div class="container">		
+	
+	<section id="inner-headline">
+	<div class="container" id="my_chapter">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">Moje rozdziały</h2>
+			</div>
+		</div>
+	</div>
+	</section>
+	<br />
+	
+	<div class="row">
+		<div class= "col-sm-7 pull-left">
+			<a class="btn btn-primary btn-lg" ng-href='#!/chapter/create'><span class="fa fa-plus fa-2x"></span>Utwórz nowy rozdział</a>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	
+	<p ng-hide="showChaptersCtrl.chapters">Brak rozdziałów!</p>
+	
+	<div ng-show="showChaptersCtrl.chapters">
+		<div class="row">
+			<label for="search" class="col-sm-2">Wyszukaj: </label>
+			<input ng-model="search.name"  class="col-sm-7" type="text" id="search" placeholder="Wyszukaj rozdział" autofocus />
+		</div>
+		<div class="panel panel-primary  row col-sm-5 col-sm-offset-1" ng-repeat="chapter in showChaptersCtrl.chapters | filter: search:startsWith | orderBy: ['-createDate','name'] as filtered">
+			<div class="panel-leftheading ">
+				 <h5 class="panel-lefttitle">{{chapter.createDate}}</h5>
+			</div>
+			<article class="panel-rightbody">
+				<a ng-href="#!/chapter/{{chapter.id}}/show_chapter_details"><h5><b>{{chapter.name}} </b></h5>
+				<hr />
+				<p>{{chapter.description}}</p> 
+				<hr />	
+				</a>	
+				<a ng-href="#!/chapter/{{chapter.id}}/edit" class="btn" > 
+					<i class="fa fa-edit fa-2x" aria-hidden="true"> </i>
+				</a>
+				<a ng-click = "showChaptersCtrl.linkId = chapter.id; showChaptersCtrl.linkName = chapter.name" class="btn" data-toggle="modal" data-target="#myModal"> 
+					<i class="fa fa-trash-o fa-2x" aria-hidden="true"> </i>
+				</a>
+				<!--<a href="aa.html" class="btn"> 
+					<i class="fa fa-share-alt fa-2x" aria-hidden="true"> </i>
+				</a>-->
+			</article>
+			<div class="clearfix"> </div>
+			
+		</div>
+		<p ng-show="filtered.length == 0">Nie znaleziono pasującyh rozdziałów!</p> 
+
+	</div>
+	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Usuwanie rozdziału</h4>
+				</div>
+				<div class="modal-body">
+					Czy na pewno chcesz usunąć rozdział '{{showChaptersCtrl.linkName}}'?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Nie</button>
+					<button type="button" class="btn btn-danger"  ng-click="showChaptersCtrl.deleteChapter(showChaptersCtrl.linkId)">Tak</button>
+				</div>
+			</div>
+			</div>
+	</div>
+	
+	
+	
+	
+</div>
+
+
+
+ 

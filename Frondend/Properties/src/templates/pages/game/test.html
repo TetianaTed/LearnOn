@@ -1,0 +1,72 @@
+﻿<div class="container">	
+	<section id="inner-headline">
+	<div class="container" id="create_chapter">
+		<div class="row">
+			<div class="col-lg-12">
+				<a ng-href="#!/chapter/{{testCtrl.chapter.id}}/show_chapter_details"><h2 class="pageTitle">Rozdział "{{testCtrl.chapter.name}}"</h2></a>
+			</div>
+		</div>
+	</div>
+	</section>
+	<br />
+	
+		<div class="row"> <!--TODO MOVE IT AS DIRECTIVE -->
+			<div class="col-sm-12">
+			 <div class="navbar navbar-default navbar-static-top">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<p class="pagination-centered text-center">Wybierz grę edukacyjną: &nbsp;&nbsp;&nbsp;</p>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-left add-space">
+							<li /><li /><li />
+							<li class="active add-space"><a ng-href="#!/game/{{testCtrl.chapter.id}}/test"><span class="fa fa-check-square-o fa-2x"></span> TEST</a></li> 
+							<!--<li class="active add-space"><a ng-href="#!/game/{{testCtrl.chapter.id}}/learn"><span class="fa fa-book fa-2x"></span> Nauka</a></li>-->
+							<li class="active add-space"><a ng-href="#!/game/{{testCtrl.chapter.id}}/memories"><span class="fa fa-th fa-2x"></span> Pamięć</a></li>	
+						</ul>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class = "row">
+		<div class="col-sm-12">
+		
+			<div class="intro" ng-show="!testCtrl.inProgress">
+				<button id="startQuiz" ng-click="testCtrl.start()">Rozpocznij Test</button>
+			</div>
+			
+			<div class="quiz-area" ng-show="testCtrl.inProgress">
+				<div ng-show="!testCtrl.quizOver">
+					<h2 id="testCtrl.question">{{testCtrl.questValue.question}}</h2>
+					<ul id="testCtrl.options">
+						<li ng-repeat="option in testCtrl.questValue.options track by $index">
+							<label> <input type="radio" name="answer" value="{{testCtrl.questValue.options[$index]}}"/>{{testCtrl.questValue.options[$index]}}</label>
+						</li>
+					</ul>
+					<button ng-click="testCtrl.checkAnswer()" ng-show="answerMode">Zatwierdź</button>
+					<div ng-show="!testCtrl.answerMode">
+						<button ng-click="testCtrl.nextQuestion()" class="next-question">Następne pytanie</button>
+						<span ng-show="testCtrl.correctAns">Poprawnie</span>
+						<span ng-show="!testCtrl.correctAns">Błędnie </span>
+					</div>
+				</div>
+ 
+				<div ng-show="testCtrl.quizOver">
+					<h2>Quiz is over</h2>
+					<button ng-click="testCtrl.reset()">Rozpocznij nowy test</button>
+				</div>
+				
+				<div id="score"> 
+					Punkty: {{testCtrl.score}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

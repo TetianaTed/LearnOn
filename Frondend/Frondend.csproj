@@ -31,5 +31,92 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="Properties\docs\docs\accounts.http" />
+    <None Include="Properties\docs\docs\chapters.http" />
+    <None Include="Properties\src\json-server\db.json" />
+    <None Include="Properties\src\json-server\db_clear.json" />
+    <None Include="Properties\src\json-server\routes.json" />
+    <None Include="Properties\src\js\examples_json\accounts.json" />
+    <None Include="Properties\src\js\examples_json\chapters.json" />
+    <None Include="Properties\src\js\vendor\angular-cookies.min.js.map" />
+    <None Include="Properties\src\js\vendor\angular-route.min.js.map" />
+    <None Include="Properties\src\js\vendor\angular.min.js.map" />
+    <None Include="Properties\src\js\vendor\jquery-3.2.1.min.map" />
+    <None Include="Properties\src\run-frontend.bat" />
+    <None Include="Properties\src\run-json-server.bat" />
+    <None Include="Properties\src\templates\pages\home\contact.php" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\src\css\animate.css" />
+    <Content Include="Properties\src\css\bootstrap.min.css" />
+    <Content Include="Properties\src\css\chapter.css" />
+    <Content Include="Properties\src\css\index_dropdown.css" />
+    <Content Include="Properties\src\css\memories.css" />
+    <Content Include="Properties\src\css\style.css" />
+    <Content Include="Properties\src\img\avatar.png" />
+    <Content Include="Properties\src\img\border-bg.jpg" />
+    <Content Include="Properties\src\img\logo.png" />
+    <Content Include="Properties\src\img\slides\1.jpg" />
+    <Content Include="Properties\src\index.html" />
+    <Content Include="Properties\src\js\controllers\account\account-controller.js" />
+    <Content Include="Properties\src\js\controllers\account\edit-account-controller.js" />
+    <Content Include="Properties\src\js\controllers\account\profile-account-controller.js" />
+    <Content Include="Properties\src\js\controllers\chapter\create-chapter-controller.js" />
+    <Content Include="Properties\src\js\controllers\chapter\edit-chapter-controller.js" />
+    <Content Include="Properties\src\js\controllers\chapter\show-chapter-details-controller.js" />
+    <Content Include="Properties\src\js\controllers\chapter\show-chapters-controller.js" />
+    <Content Include="Properties\src\js\controllers\game\memories-controller.js" />
+    <Content Include="Properties\src\js\controllers\game\test-controller.js" />
+    <Content Include="Properties\src\js\directives\file-model.js" />
+    <Content Include="Properties\src\js\directives\ng-file-upload-model.js" />
+    <Content Include="Properties\src\js\main-app.js" />
+    <Content Include="Properties\src\js\models\account\create-account-model.js" />
+    <Content Include="Properties\src\js\models\account\edit-account-model.js" />
+    <Content Include="Properties\src\js\models\account\login-account-model.js" />
+    <Content Include="Properties\src\js\models\account\view-account-model.js" />
+    <Content Include="Properties\src\js\models\chapter\edit-chapter-model.js" />
+    <Content Include="Properties\src\js\models\chapter\view-chapter-list-model.js" />
+    <Content Include="Properties\src\js\models\chapter\view-chapter-model.js" />
+    <Content Include="Properties\src\js\services\account-service.js" />
+    <Content Include="Properties\src\js\services\auth-service.js" />
+    <Content Include="Properties\src\js\services\backend-configuration.js" />
+    <Content Include="Properties\src\js\services\chapter-service.js" />
+    <Content Include="Properties\src\js\services\message-service.js" />
+    <Content Include="Properties\src\js\services\mock\account-service-mock.js" />
+    <Content Include="Properties\src\js\services\mock\auth-service.js" />
+    <Content Include="Properties\src\js\services\mock\chapter-service-mock.js" />
+    <Content Include="Properties\src\js\vendor\angular-cookies.js" />
+    <Content Include="Properties\src\js\vendor\angular-cookies.min.js" />
+    <Content Include="Properties\src\js\vendor\angular-css.js" />
+    <Content Include="Properties\src\js\vendor\angular-css.min.js" />
+    <Content Include="Properties\src\js\vendor\angular-route.js" />
+    <Content Include="Properties\src\js\vendor\angular-route.min.js" />
+    <Content Include="Properties\src\js\vendor\angular.js" />
+    <Content Include="Properties\src\js\vendor\angular.min.js" />
+    <Content Include="Properties\src\js\vendor\bootstrap.min.js" />
+    <Content Include="Properties\src\js\vendor\jquery-3.2.1.js" />
+    <Content Include="Properties\src\js\vendor\jquery-3.2.1.min.js" />
+    <Content Include="Properties\src\js\vendor\my_scripts\avatar.js" />
+    <Content Include="Properties\src\js\vendor\my_scripts\contact.js" />
+    <Content Include="Properties\src\js\vendor\my_scripts\custom.js" />
+    <Content Include="Properties\src\js\vendor\ng-imgur.js" />
+    <Content Include="Properties\src\templates\pages\account\edit.html" />
+    <Content Include="Properties\src\templates\pages\account\logIn.html" />
+    <Content Include="Properties\src\templates\pages\account\profile.html" />
+    <Content Include="Properties\src\templates\pages\account\register.html" />
+    <Content Include="Properties\src\templates\pages\chapter\create.html" />
+    <Content Include="Properties\src\templates\pages\chapter\edit.html" />
+    <Content Include="Properties\src\templates\pages\chapter\show_chapters.html" />
+    <Content Include="Properties\src\templates\pages\chapter\show_chapter_details.html" />
+    <Content Include="Properties\src\templates\pages\game\learn.html" />
+    <Content Include="Properties\src\templates\pages\game\memories.html" />
+    <Content Include="Properties\src\templates\pages\game\test.html" />
+    <Content Include="Properties\src\templates\pages\home\contact.html" />
+    <Content Include="Properties\src\templates\pages\home\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\src\js\filters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

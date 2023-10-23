@@ -1,0 +1,33 @@
+﻿<div class="container">
+   <h2 class = "form-login-heading">Logowanie</h2>
+   <hr />
+
+	<div class="alert alert-danger" role="alert" ng-show = "accountCtrl.errors">
+		<p>{{accountCtrl.errors}}</p>
+	</div>
+        
+   
+    <form class="form-horizontal" name="form" role="form" ng-submit="accountCtrl.login(account)">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="form-login">
+				<div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email" class="form-control"  placeholder="email" ng-model="account.email" required autofocus />
+					<span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Adres email jest wymagany</span>
+				</div>
+				
+				<div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+					<label for="password">Hasło</label>
+					<input type="password" name="password" id="password" class="form-control" placeholder="hasło" ng-model="account.password" required />
+					<span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Hasło jest wymagane</span>
+				</div>
+			
+				<div class="form-actions">
+					 <button type="submit" class="btn btn-primary">Zaloguj</button>
+					 <a class = "btn btn-warning" ng-href='#!/account/register'>Zarejestruj</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<br />

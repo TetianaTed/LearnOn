@@ -1,0 +1,128 @@
+[
+	{
+	  "id": 1,
+	  "userId": 1,
+	  "name": "Kolory",
+	  "description": "Rozdzial o kolorach",
+	  "createDate": "2017-12-12",
+	  "lang1Name": "Polski",
+	  "lang2Name": "Angielski",
+	  "words":
+		[
+			{
+				"imageUrl": "",
+				"word1":
+				[
+					{
+						"name": "Pomarańczowy",
+						"soundUrl": ""
+					}
+				],
+				"word2":
+				[
+					{
+						"name": "Orange",
+						"soundUrl": ""
+					}
+				]
+			},
+			{
+				"imageUrl": "",
+				"word1":
+				[
+					{
+						"name": "Zielony",
+						"soundUrl": ""
+					}
+				],
+				"word2":
+				[
+					{
+						"name": "Green",
+						"soundUrl": ""
+					}
+				]
+			},
+			{
+				"imageUrl": "",
+				"word1":
+				[
+					{
+						"name": "Żółty",
+						"soundUrl": ""
+					}
+				],
+				"word2":
+				[
+					{
+						"name": "Yellow",
+						"soundUrl": ""
+					}
+				]
+			}	
+		]
+	},
+	{
+	  "id": 2,
+	  "userId": 1,
+	  "name": "Zwierzęta",
+	  "description": "Rozdział o zwierzętach",
+	  "createDate": "2017-12-15",
+	  "lang1Name": "Polski",
+	  "lang2Name": "Angielski",
+	  "words":
+		[
+			{
+				"imageUrl": "",
+				"word1":
+				[
+					{
+						"name": "Słoń",
+						"soundUrl": ""
+					}
+				],
+				"word2":
+				[
+					{
+						"name": "Elephant",
+						"soundUrl": ""
+					}
+				]
+			},
+			{
+				"imageUrl": "",
+				"word1":
+				[
+					{
+						"name": "Kot",
+						"soundUrl": ""
+					}
+				],
+				"word2":
+				[
+					{
+						"name": "Cat",
+						"soundUrl": ""
+					}
+				]
+			},
+			{
+				"imageUrl": "",
+				"word1":
+				[
+					{
+						"name": "Pies",
+						"soundUrl": ""
+					}
+				],
+				"word2":
+				[
+					{
+						"name": "Dog",
+						"soundUrl": ""
+					}
+				]
+			}	
+		]
+	}
+]		  

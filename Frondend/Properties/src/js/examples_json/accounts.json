@@ -1,0 +1,32 @@
+[
+	{
+	  "id:": 1, /*moze byc auto generate */
+	  "firstName": "Jan",
+	  "lastName": "Nowak",
+	  "email": "jan.nowak@gmail.com",
+	  "password": "admin",
+	  "birthDate": "1999-05-20",
+	  "gender": "Mężczyzna",
+	  "avatarUrl": "https://www.shareicon.net/data/128x128/2015/12/14/207818_face_300x300.png"
+	}, 
+	{
+	  "id:": 2,
+	  "firstName": "Dziecko",
+	  "lastName": "pierwsze",
+	  "email": "dziecko.pierwsze@gmail.com",
+	  "password": "aaqq11",
+	  "birthDate": "2005-09-05",
+	  "Gender": "Kobieta",
+	  "avatarUrl": "https://www.shareicon.net/data/128x128/2015/12/14/207818_face_300x300.png"
+	},
+	{
+	  "id:": 3,
+	  "firstName": "Mlody",
+	  "lastName": "Nowak",
+	  "email": "mlody.nowak@gmail.com",
+	  "password": "aaqq11",
+	  "birthDate": "1994-04-15",
+	  "Gender": "Nieznana",
+	  "avatarUrl": "https://www.shareicon.net/data/128x128/2015/12/14/207818_face_300x300.png"
+	}
+]

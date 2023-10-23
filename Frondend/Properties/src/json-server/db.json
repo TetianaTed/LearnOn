@@ -1,0 +1,124 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "firstName": "Jan",
+      "lastName": "Nowak",
+      "email": "jan.nowak@gmail.com",
+      "password": "admin",
+      "birthDate": "1999-05-20",
+      "gender": "Mężczyzna",
+      "avatarUrl": "https://www.shareicon.net/data/128x128/2015/12/14/207818_face_300x300.png"
+    },
+    {
+      "id": 2,
+      "firstName": "Dziecko",
+      "lastName": "pierwsze",
+      "email": "dziecko.pierwsze@gmail.com",
+      "password": "aaqq11",
+      "birthDate": "2005-09-05",
+      "gender": "Kobieta",
+      "avatarUrl": "https://www.shareicon.net/data/128x128/2015/12/14/207818_face_300x300.png"
+    },
+    {
+      "id": 3,
+      "firstName": "Mlody",
+      "lastName": "Nowak",
+      "email": "mlody.nowak@gmail.com",
+      "password": "aaqq11",
+      "birthDate": "1994-04-15",
+      "Gender": "Nieznana",
+      "avatarUrl": "https://www.shareicon.net/data/128x128/2015/12/14/207818_face_300x300.png"
+    }
+  ],
+  "chapters": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Kolory",
+      "description": "Rozdzial o kolorach",
+      "createDate": "2017-12-12",
+      "lang1Name": "Polski",
+      "lang2Name": "Angielski",
+      "words": [
+        {
+          "imageUrl": "",
+          "word1": {
+            "name": "Pomarańczowy",
+            "soundUrl": ""
+          },
+          "word2": {
+            "name": "Orange",
+            "soundUrl": ""
+          }
+        },
+        {
+          "imageUrl": "",
+          "word1": {
+            "name": "Zielony",
+            "soundUrl": ""
+          },
+          "word2": {
+            "name": "Green",
+            "soundUrl": ""
+          }
+        },
+        {
+          "imageUrl": "",
+          "word1": {
+            "name": "Żółty",
+            "soundUrl": ""
+          },
+          "word2": {
+            "name": "Yellow",
+            "soundUrl": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Zwierzęta",
+      "description": "Rozdział o zwierzętach",
+      "createDate": "2017-12-15",
+      "lang1Name": "Polski",
+      "lang2Name": "Angielski",
+      "words": [
+        {
+          "imageUrl": "",
+          "word1": {
+            "name": "Słoń",
+            "soundUrl": ""
+          },
+          "word2": {
+            "name": "Elephant",
+            "soundUrl": ""
+          }
+        },
+        {
+          "imageUrl": "",
+          "word1": {
+            "name": "Kot",
+            "soundUrl": ""
+          },
+          "word2": {
+            "name": "Cat",
+            "soundUrl": ""
+          }
+        },
+        {
+          "imageUrl": "",
+          "word1": {
+            "name": "Pies",
+            "soundUrl": ""
+          },
+          "word2": {
+            "name": "Dog222",
+            "soundUrl": ""
+          }
+        }
+      ]
+    }
+  ]
+}

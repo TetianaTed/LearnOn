@@ -1,0 +1,13 @@
+{
+    "/api/accounts": "/accounts",
+    "/api/accounts/:id": "/accounts/:id",
+    "/api/accounts\\?email=:email": "/accounts?email=:email",
+
+    "/api/chapters": "/chapters",
+    "/api/chapters/:id": "/chapters/:id",
+    "/api/chapters\\?userId=:userId": "/chapters?userId=:userId",
+
+    "/:resources/:id/show": "/:resource/:id",
+    "/posts/:category": "/posts?category=:category",
+    "/articles\\?id=:id": "/posts/:id"
+}
