@@ -1,3 +1,5 @@
+using Microsoft.OpenApi.Models;
+
 namespace Backend
 {
     public class Program
@@ -10,24 +12,43 @@ namespace Backend
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            //builder.Services.AddEndpointsApiExplorer();
+            
+            // Register the Swagger generator with OpenAPI v3
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "LearnOn API",
+                    Version = "v1"
+                });
+            });
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+                endpoints.MapControllers(); 
+            });
 
-            app.UseAuthorization();
+            app.UseHttpsRedirection();
+         
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Learnon Api v1");
+            });
+            
+            //app.UseAuthorization();
 
 
-            app.MapControllers();
-
+           
             app.Run();
+
+
         }
     }
 }

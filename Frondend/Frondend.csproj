@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Properties\docs\Custom\Stop-database.bat" />
     <None Include="Properties\docs\docs\accounts.http" />
     <None Include="Properties\docs\docs\chapters.http" />
     <None Include="Properties\src\json-server\db.json" />
@@ -48,6 +49,7 @@
     <None Include="Properties\src\templates\pages\home\contact.php" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\docs\Custom\Start-database.bat" />
     <Content Include="Properties\src\css\animate.css" />
     <Content Include="Properties\src\css\bootstrap.min.css" />
     <Content Include="Properties\src\css\chapter.css" />
