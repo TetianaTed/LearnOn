@@ -3,9 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.csproj", "{7973B851-4645-4557-BC2D-EC5D681010BC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{9A472B97-2C9A-4F17-8437-E0280B1C6E25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frondend", "Frondend\Frondend.csproj", "{3DA7B947-877B-4951-8CFF-631FDB3B9421}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{003B2F4E-08F7-42A4-8333-7D287E460C41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9BD40F8C-7ECB-4AF9-A042-2F8167A5AF3E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Learnon-ui-integration", "backend\src\Learnon-ui-integration\Learnon-ui-integration.csproj", "{16824ABF-75C4-4802-A772-010066257DD5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{49C9B823-A1B6-4749-BE67-5FBB139D96A7}"
+	ProjectSection(SolutionItems) = preProject
+		docs\accounts.http = docs\accounts.http
+		docs\chapters.http = docs\chapters.http
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "frontend", "frontend\frontend.shproj", "{031BE365-E15B-4EAB-9D76-02538972B72C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit", "unit", "{868EED0D-E903-46B6-9336-E76D95B39072}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "integration", "integration", "{800AA132-ED58-48BE-ABEB-AC424EB16455}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Learnon-ui-integration.IntegrationTests", "backend\tests\integration\Learnon-ui-integration.IntegrationTests\Learnon-ui-integration.IntegrationTests.csproj", "{A7D1D7CD-4236-407D-AFFF-5333D653A09D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +31,31 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7973B851-4645-4557-BC2D-EC5D681010BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7973B851-4645-4557-BC2D-EC5D681010BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7973B851-4645-4557-BC2D-EC5D681010BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7973B851-4645-4557-BC2D-EC5D681010BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DA7B947-877B-4951-8CFF-631FDB3B9421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DA7B947-877B-4951-8CFF-631FDB3B9421}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DA7B947-877B-4951-8CFF-631FDB3B9421}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DA7B947-877B-4951-8CFF-631FDB3B9421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16824ABF-75C4-4802-A772-010066257DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16824ABF-75C4-4802-A772-010066257DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16824ABF-75C4-4802-A772-010066257DD5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{16824ABF-75C4-4802-A772-010066257DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16824ABF-75C4-4802-A772-010066257DD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7D1D7CD-4236-407D-AFFF-5333D653A09D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7D1D7CD-4236-407D-AFFF-5333D653A09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7D1D7CD-4236-407D-AFFF-5333D653A09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7D1D7CD-4236-407D-AFFF-5333D653A09D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{003B2F4E-08F7-42A4-8333-7D287E460C41} = {9A472B97-2C9A-4F17-8437-E0280B1C6E25}
+		{9BD40F8C-7ECB-4AF9-A042-2F8167A5AF3E} = {9A472B97-2C9A-4F17-8437-E0280B1C6E25}
+		{16824ABF-75C4-4802-A772-010066257DD5} = {003B2F4E-08F7-42A4-8333-7D287E460C41}
+		{868EED0D-E903-46B6-9336-E76D95B39072} = {9BD40F8C-7ECB-4AF9-A042-2F8167A5AF3E}
+		{800AA132-ED58-48BE-ABEB-AC424EB16455} = {9BD40F8C-7ECB-4AF9-A042-2F8167A5AF3E}
+		{A7D1D7CD-4236-407D-AFFF-5333D653A09D} = {800AA132-ED58-48BE-ABEB-AC424EB16455}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B6139794-32AE-4199-8938-2A521BF59B10}
+		SolutionGuid = {37437A34-D758-4DD8-863A-4370961C52A9}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		frontend\frontend.projitems*{031be365-e15b-4eab-9d76-02538972b72c}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

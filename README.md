@@ -1,2 +1,0 @@
-# LearnOn
-Web page LearnOn

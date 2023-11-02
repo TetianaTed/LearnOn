@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>A2A5976F-D8AC-4B61-A2D2-F1A36C2C76DC</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>frontend</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)src\css\animate.css" />
+    <Content Include="$(MSBuildThisFileDirectory)src\css\bootstrap.min.css" />
+    <Content Include="$(MSBuildThisFileDirectory)src\css\chapter.css" />
+    <Content Include="$(MSBuildThisFileDirectory)src\css\index_dropdown.css" />
+    <Content Include="$(MSBuildThisFileDirectory)src\css\memories.css" />
+    <Content Include="$(MSBuildThisFileDirectory)src\css\style.css" />
+    <Content Include="$(MSBuildThisFileDirectory)src\img\avatar.png" />
+    <Content Include="$(MSBuildThisFileDirectory)src\img\border-bg.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)src\img\logo.png" />
+    <Content Include="$(MSBuildThisFileDirectory)src\img\slides\1.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)src\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\json-server\db.json" />
+    <Content Include="$(MSBuildThisFileDirectory)src\json-server\db_clear.json" />
+    <Content Include="$(MSBuildThisFileDirectory)src\json-server\routes.json" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\controllers\account\account-controller.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\controllers\account\edit-account-controller.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\controllers\account\profile-account-controller.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\controllers\chapter\create-chapter-controller.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\controllers\chapter\edit-chapter-controller.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\controllers\chapter\show-chapter-details-controller.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\controllers\chapter\show-chapters-controller.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\controllers\game\memories-controller.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\controllers\game\test-controller.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\directives\file-model.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\directives\ng-file-upload-model.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\examples_json\accounts.json" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\examples_json\chapters.json" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\main-app.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\models\account\create-account-model.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\models\account\edit-account-model.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\models\account\login-account-model.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\models\account\view-account-model.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\models\chapter\edit-chapter-model.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\models\chapter\view-chapter-list-model.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\models\chapter\view-chapter-model.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\services\account-service.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\services\auth-service.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\services\backend-configuration.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\services\chapter-service.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\services\message-service.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\services\mock\account-service-mock.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\services\mock\auth-service.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\services\mock\chapter-service-mock.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular-cookies.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular-cookies.min.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular-cookies.min.js.map" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular-css.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular-css.min.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular-route.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular-route.min.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular-route.min.js.map" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular.min.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\angular.min.js.map" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\bootstrap.min.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\jquery-3.2.1.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\jquery-3.2.1.min.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\jquery-3.2.1.min.map" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\my_scripts\avatar.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\my_scripts\contact.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\my_scripts\custom.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\js\vendor\ng-imgur.js" />
+    <Content Include="$(MSBuildThisFileDirectory)src\run-frontend.bat" />
+    <Content Include="$(MSBuildThisFileDirectory)src\run-json-server.bat" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\account\edit.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\account\logIn.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\account\profile.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\account\register.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\chapter\create.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\chapter\edit.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\chapter\show_chapters.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\chapter\show_chapter_details.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\game\learn.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\game\memories.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\game\test.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\home\contact.html" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\home\contact.php" />
+    <Content Include="$(MSBuildThisFileDirectory)src\templates\pages\home\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)src\js\filters" />
+  </ItemGroup>
+</Project>
