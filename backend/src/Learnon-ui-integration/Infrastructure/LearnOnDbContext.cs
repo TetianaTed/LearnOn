@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Learnon_ui_integration.Module.Account.Model.Database.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Learnon
 {
@@ -8,6 +9,8 @@ namespace Learnon
         public LearnOnDbContext(DbContextOptions<LearnOnDbContext> options) : base(options)
         {
         }
+        public DbSet<AccountEntity> Accounts { get; set; }
+
         /*
         public DbSet<AccountEntity> Accounts { get; set; }
         

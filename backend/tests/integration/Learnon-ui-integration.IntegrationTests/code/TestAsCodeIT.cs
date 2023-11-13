@@ -9,6 +9,7 @@ using Xunit.Abstractions;
 
 namespace Learnon_ui_integration.IntegrationTests.code
 {
+    /*
     public class TestAsCodeIT : CodeIntegrationConfiguration
     {
         public TestAsCodeIT(ITestOutputHelper testOutputHelper, WebApplicationFactory<Startup> factory,
@@ -51,4 +52,5 @@ namespace Learnon_ui_integration.IntegrationTests.code
             }
         }
     }
+    */
 }

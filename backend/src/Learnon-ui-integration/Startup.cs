@@ -8,6 +8,7 @@ using Npgsql; // Import Npgsql for PostgreSQL
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.OpenApi.Models;
+using Learnon_ui_integration.Module.Account.Logic;
 //using Serilog;
 //using Serilog.Formatting.Json; // Import OpenAPI v3 types
 
@@ -49,8 +50,8 @@ namespace Learnon
             
             services.AddControllers();
             
-           //AccountConfiguration accountConfiguration = new AccountConfiguration();
-          // accountConfiguration.Configure(services);
+           AccountConfiguration accountConfiguration = new AccountConfiguration();
+           accountConfiguration.Configure(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
