@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Learnon_ui_integration.Module.Account
 {
-    /*
+    
     [Route("api/accounts")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -29,6 +29,6 @@ namespace Learnon_ui_integration.Module.Account
 
 
     }
-    */
+    
 
 }
