@@ -37,6 +37,7 @@ namespace Learnon
             {
                 options.UseNpgsql(_configuration.GetConnectionString("PostgreSQLConnection"));
             });
+
             
             // Register the Swagger generator with OpenAPI v3
             services.AddSwaggerGen(c =>

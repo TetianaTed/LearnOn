@@ -41,5 +41,38 @@ namespace Learnon_ui_integration.Module.Account.Logic
 				throw;
 			}			
         }
-    }
+
+		public void Update(UpdateAccountRequest request)
+		{
+            try
+            {
+                _logger.LogInformation("Request is: " + request);
+
+                if(request.OldPassword.Equals(request.NewPassword))
+				{
+					throw new ArgumentException("New password can not the same as old password");
+				}
+				if (!request.NewPassword.Equals(request.RepeatNewPassword))
+                {
+                    throw new ArgumentException("NewPassword_not_match;");
+                }
+
+				AccountEntity? foundAccount = _accountRepository.FindById(request.Id);
+
+				if (foundAccount == null)
+				{
+					throw new ApplicationException("Account with id: " + request.Id + " not found");
+				}
+
+				foundAccount.Password = request.NewPassword;
+				_accountRepository.Update(foundAccount);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when updated account with id: " + request.Id);
+                throw;
+            }
+        }
+	}
 }

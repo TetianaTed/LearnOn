@@ -26,6 +26,12 @@ namespace Learnon_ui_integration.Module.Account
             return Created("", "abcd test");
         }
 
+        [HttpPut]
+        public IActionResult Update([FromBody] UpdateAccountRequest request)
+        {
+            _accountApi.Update(request);
+            return Ok("Success update");
+        }
 
 
     }

@@ -8,9 +8,11 @@ namespace Learnon
     {
         public LearnOnDbContext(DbContextOptions<LearnOnDbContext> options) : base(options)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
         public DbSet<AccountEntity> Accounts { get; set; }
 
+        
         /*
         public DbSet<AccountEntity> Accounts { get; set; }
         

@@ -23,5 +23,22 @@ namespace Learnon_ui_integration.Module.Account.Logic
             _context.SaveChanges();
 
         }
+
+        public AccountEntity? FindById(long id)
+        {
+            return _context.Accounts.FirstOrDefault(account => account.Id == id);
+        }
+
+        public void Update(AccountEntity entity)
+        {
+            /*
+              if (entity.BirthDate.HasValue)
+            {
+                entity.BirthDate = DateTime.Parse(entity.BirthDate.Value.ToLongDateString());
+            }    
+            */
+            _context.Accounts.Update(entity);
+            _context.SaveChanges();
+        }
     }
 }
