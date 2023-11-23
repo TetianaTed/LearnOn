@@ -40,5 +40,16 @@ namespace Learnon_ui_integration.Module.Account.Logic
             _context.Accounts.Update(entity);
             _context.SaveChanges();
         }
+
+        public void Delete(AccountEntity foundAccount)
+        {
+           _context.Accounts.Remove(foundAccount);
+           _context.SaveChanges();
+        }
+
+        public AccountEntity? FindByEmail(string email)
+        {
+            return _context.Accounts.FirstOrDefault(account => account.Email.Equals(email));
+        }
     }
 }

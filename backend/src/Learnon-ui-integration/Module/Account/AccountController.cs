@@ -1,11 +1,13 @@
 ﻿using Learnon_ui_integration.Module.Account.Logic;
 using Learnon_ui_integration.Module.Account.Model.Expose;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Learnon_ui_integration.Module.Account
 {
-    
+    [EnableCors("*")]
+    //[DisableCors]
     [Route("api/accounts")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -31,6 +33,35 @@ namespace Learnon_ui_integration.Module.Account
         {
             _accountApi.Update(request);
             return Ok("Success update");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
+        {
+            _accountApi.Delete(id);
+            return Ok("Success delete");
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult FindById(long id)
+        {
+            IList<AccountResponse> response = _accountApi.FindById(id);
+            if (response.Count == 0)
+            {
+                return NoContent();
+            }
+            return Ok(response);
+        }
+
+        [HttpGet()]
+        public IActionResult FindByEmail([FromQuery]string email)
+        {
+            IList<AccountResponse> response = _accountApi.FindByEmail(email);
+            if (response.Count == 0)
+            {
+                return NoContent();
+            }
+            return Ok(response);
         }
 
 

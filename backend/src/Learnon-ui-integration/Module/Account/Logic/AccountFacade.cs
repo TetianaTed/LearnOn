@@ -74,5 +74,77 @@ namespace Learnon_ui_integration.Module.Account.Logic
                 throw;
             }
         }
+
+        public void Delete(long id)
+        {
+            _logger.LogInformation("Request with id: " + id);
+
+			try
+			{
+
+				AccountEntity? foundAccount = _accountRepository.FindById(id);
+
+				if (foundAccount == null)
+				{
+					throw new ApplicationException("Account with id: " + id + " not found");
+				}
+
+				_accountRepository.Delete(foundAccount);
+			}
+
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error when deleted account with id: " + id);
+				throw;
+			}
+        }
+
+		public IList<AccountResponse> FindById(long id)
+		{
+			AccountEntity? foundAccount = _accountRepository.FindById(id);
+			if (foundAccount == null)
+			{
+				return new List<AccountResponse>();
+			}
+			AccountResponse response = new AccountResponse()
+			{
+				Id = foundAccount.Id,
+				FirstName = foundAccount.FirstName,
+				LastName = foundAccount.LastName,	
+				Email = foundAccount.Email,
+                Password = foundAccount.Password,
+                BirthDate = foundAccount.BirthDate,
+				Gender = foundAccount.Gender				
+			};
+
+			IList<AccountResponse> result = new List<AccountResponse>();
+			result.Add(response);
+
+			return result;
+		}
+
+		public IList<AccountResponse> FindByEmail(string email)
+		{
+            AccountEntity? foundAccount = _accountRepository.FindByEmail(email);
+            if (foundAccount == null)
+            {
+                return new List<AccountResponse>();
+            }
+            AccountResponse response = new AccountResponse()
+            {
+                Id = foundAccount.Id,
+                FirstName = foundAccount.FirstName,
+                LastName = foundAccount.LastName,
+                Email = foundAccount.Email,
+                Password = foundAccount.Password,
+                BirthDate = foundAccount.BirthDate,
+                Gender = foundAccount.Gender
+            };
+
+            IList<AccountResponse> result = new List<AccountResponse>();
+            result.Add(response);
+
+            return result;
+        }
 	}
 }
