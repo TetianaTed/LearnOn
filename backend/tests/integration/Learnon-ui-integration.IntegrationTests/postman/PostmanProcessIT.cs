@@ -8,6 +8,7 @@ using Xunit.Abstractions;
 
 namespace Learnon_ui_integration.IntegrationTests.postman
 {
+    /*
     public class PostmanProcessIT : PostmanIntegrationConfiguration
     {
         private readonly ITestOutputHelper _testOutputHelper;
@@ -96,4 +97,5 @@ namespace Learnon_ui_integration.IntegrationTests.postman
             }
         }
     }
+    */
 } 

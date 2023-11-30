@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Learnon_ui_integration.Module.Account
 {
-    [EnableCors("*")]
+    //[EnableCors("*")]
     //[DisableCors]
     [Route("api/accounts")]
     [ApiController]
@@ -28,8 +28,8 @@ namespace Learnon_ui_integration.Module.Account
             return Created("", "abcd test");
         }
 
-        [HttpPut]
-        public IActionResult Update([FromBody] UpdateAccountRequest request)
+        [HttpPut("{id}")]
+        public IActionResult Update(long id, [FromBody] UpdateAccountRequest request)
         {
             _accountApi.Update(request);
             return Ok("Success update");

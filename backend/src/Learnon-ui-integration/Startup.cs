@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using Learnon_ui_integration.Module.Account.Logic;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Cors;
 //using Serilog;
 //using Serilog.Formatting.Json; // Import OpenAPI v3 types
 
@@ -39,10 +40,16 @@ namespace Learnon
             {
                 options.UseNpgsql(_configuration.GetConnectionString("PostgreSQLConnection"));
             });
-            
+
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(new CorsPolicyBuilder().AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().Build());
+                options.AddDefaultPolicy(builder =>
+                {
+                    // Disable CORS (Allow all origins - NOT recommended for production)
+                    builder.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
             });
 
             
@@ -86,7 +93,8 @@ namespace Learnon
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "LearnOn API V1");
-            });        
+            });   
+           
         }
     }
 }
