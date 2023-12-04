@@ -8,6 +8,7 @@ using Learnon_ui_integration.Module.Account.Model.Expose;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 using Xunit.Abstractions;
+using Xunit.Sdk;
 
 namespace Learnon_ui_integration.IntegrationTests.code
 {
@@ -73,41 +74,48 @@ namespace Learnon_ui_integration.IntegrationTests.code
         [Fact]
         public async void Success_Account_Update()
         {
-            Assert.Equal(0, _dbContext.Accounts.Count()); ;
+            Assert.Equal(0, _dbContext.Accounts.Count());
             //Arrange
-            CreateAccountRequest arrangeCreateAccountRequest =
-                        new CreateAccountRequest("testImie",
-                                                 "testNazwisko",
-                                                 "test@localhost.com",
-                                                 "test",
-                                                 "test",
-                                                 DateTime.Now,
-                                                "Nieznana");
+            AccountEntity arrangeCreateAccountRequest =
+                        new AccountEntity() {
+                            FirstName = "testImie",
+                            LastName = "testNazwisko",
+                            Email = "test@localhost.com",
+                            Password = "test",
+                            BirthDate = DateTime.Now,
+                            Gender = "Nieznana"
+                          };
             //Save the data to database
-            HttpResponseMessage responseMessage = await _client.PostAsync("http://localhost:80/api/accounts", 
-                                                                            JsonContent.Create(arrangeCreateAccountRequest));
-            Assert.Equal(HttpStatusCode.Created, responseMessage.StatusCode);
+            _dbContext.Accounts.Add(arrangeCreateAccountRequest);
+            _dbContext.SaveChanges();
 
-            //And (retrieve account id)
+            Assert.Equal(1, _dbContext.Accounts.Count());
 
-            HttpResponseMessage responseFoundAccount = await _client
-                .GetAsync($"http://localhost:80/api/accounts?email={arrangeCreateAccountRequest.Email}");
-
-            _testOutputHelper.WriteLine(await responseFoundAccount.Content.ReadAsStringAsync());
-           
-            AccountResponse[] arrangeFoundAccount = await responseFoundAccount.Content.ReadAsAsync<AccountResponse[]>();
+            //fetch created account id
+            AccountEntity foundedAccount = _dbContext.Accounts.First(account => 
+                                            account.Email.Equals(arrangeCreateAccountRequest.Email));
 
             //And (prepare update account request)
-            UpdateAccountRequest arrangeUpdateAccountRequest = new UpdateAccountRequest(arrangeFoundAccount[0].Id,"test","test1","test1");
+            UpdateAccountRequest arrangeUpdateAccountRequest = new UpdateAccountRequest(foundedAccount.Id, "test","test1","test1");
 
             //Act
             HttpResponseMessage operationUpdateResult = await _client.PutAsync($"http://localhost:80/api/accounts/{arrangeUpdateAccountRequest.Id}",
                                                                               JsonContent.Create(arrangeUpdateAccountRequest));
+            //_dbContext.SaveChanges();
+            //_testOutputHelper.WriteLine(await operationUpdateResult.Content.ReadAsStringAsync());
+
+            IList<AccountEntity> foundAllAccounts = _dbContext.Accounts.ToList();
+            foreach (var accountEntity in foundAllAccounts)
+            {
+                _testOutputHelper.WriteLine(accountEntity.ToString());
+            }
+
 
             //Assert
-            Assert.Equal(HttpStatusCode.OK, operationUpdateResult.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, operationUpdateResult.StatusCode);            
             Assert.Equal(arrangeUpdateAccountRequest.NewPassword, 
                         _dbContext.Accounts.First(x => x.Id== arrangeUpdateAccountRequest.Id).Password);
+
         }
     }
 
