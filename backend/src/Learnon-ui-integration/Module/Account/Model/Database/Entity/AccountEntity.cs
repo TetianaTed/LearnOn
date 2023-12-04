@@ -42,6 +42,11 @@ namespace Learnon_ui_integration.Module.Account.Model.Database.Entity
         [Column("avatar_url")]        
         public string? AvatarUrl { get; set; }
 
+        public override string ToString()
+        {
+            return $"AccountEntity - FirstName: {FirstName}, LastName: {LastName}, Email: {Email}, Gender: {Gender}, BirthDate: {BirthDate}, Password: {Password}";
+        }
+
         /*
         public AccountEntity(string firstName,
                              string lastName,

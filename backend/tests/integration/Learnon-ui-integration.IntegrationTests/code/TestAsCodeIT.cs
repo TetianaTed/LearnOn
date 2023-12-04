@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using Learnon;
+using Learnon_ui_integration.Module.Account.Model.Database.Entity;
 using Learnon_ui_integration.Module.Account.Model.Expose;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
@@ -57,13 +58,22 @@ namespace Learnon_ui_integration.IntegrationTests.code
             //Assert
             foreach (var response in responseMessages)
             {
+                Assert.Equal(2,base._dbContext.Accounts.Count());
                 Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             }
+
+           IList<AccountEntity> foundAllAccounts = _dbContext.Accounts.ToList();
+            foreach (var accountEntity in foundAllAccounts)
+            {
+                _testOutputHelper.WriteLine(accountEntity.ToString());
+            }
+
         }
 
         [Fact]
         public async void Success_Account_Update()
         {
+            Assert.Equal(0, _dbContext.Accounts.Count()); ;
             //Arrange
             CreateAccountRequest arrangeCreateAccountRequest =
                         new CreateAccountRequest("testImie",
@@ -82,11 +92,13 @@ namespace Learnon_ui_integration.IntegrationTests.code
 
             HttpResponseMessage responseFoundAccount = await _client
                 .GetAsync($"http://localhost:80/api/accounts?email={arrangeCreateAccountRequest.Email}");
+
+            _testOutputHelper.WriteLine(await responseFoundAccount.Content.ReadAsStringAsync());
            
-            AccountResponse arrangeFoundAccount = await responseFoundAccount.Content.ReadAsAsync<AccountResponse>();
+            AccountResponse[] arrangeFoundAccount = await responseFoundAccount.Content.ReadAsAsync<AccountResponse[]>();
 
             //And (prepare update account request)
-            UpdateAccountRequest arrangeUpdateAccountRequest = new UpdateAccountRequest(arrangeFoundAccount.Id,"test","test1","test1");
+            UpdateAccountRequest arrangeUpdateAccountRequest = new UpdateAccountRequest(arrangeFoundAccount[0].Id,"test","test1","test1");
 
             //Act
             HttpResponseMessage operationUpdateResult = await _client.PutAsync($"http://localhost:80/api/accounts/{arrangeUpdateAccountRequest.Id}",
@@ -94,6 +106,8 @@ namespace Learnon_ui_integration.IntegrationTests.code
 
             //Assert
             Assert.Equal(HttpStatusCode.OK, operationUpdateResult.StatusCode);
+            Assert.Equal(arrangeUpdateAccountRequest.NewPassword, 
+                        _dbContext.Accounts.First(x => x.Id== arrangeUpdateAccountRequest.Id).Password);
         }
     }
 

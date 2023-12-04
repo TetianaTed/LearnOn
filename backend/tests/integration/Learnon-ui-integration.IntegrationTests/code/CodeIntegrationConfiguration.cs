@@ -14,11 +14,14 @@ using Xunit.Abstractions;
 namespace Learnon_ui_integration.IntegrationTests.code
 {
     public abstract class CodeIntegrationConfiguration :  IClassFixture<CodeIntegrationConfiguration.TestWebApplicationFactory<Startup>>,
-        IClassFixture<WebApplicationFactory<Startup>>
+        IClassFixture<WebApplicationFactory<Startup>>,
+        IDisposable
     {
         protected readonly HttpClient _client;
 
         protected readonly ITestOutputHelper _testOutputHelper;
+
+        protected readonly LearnOnDbContext _dbContext;
         
         protected CodeIntegrationConfiguration(ITestOutputHelper testOutputHelper,
             WebApplicationFactory<Startup> factory,
@@ -26,6 +29,12 @@ namespace Learnon_ui_integration.IntegrationTests.code
         {
             _testOutputHelper = testOutputHelper;
             _client = factory2.CreateClient();
+            _dbContext = factory2.Services.CreateScope().ServiceProvider.GetRequiredService<LearnOnDbContext>();
+        }
+
+        public void Dispose()
+        {
+            _dbContext.Database.EnsureDeleted();
         }
 
         public sealed class TestWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
@@ -46,7 +55,7 @@ namespace Learnon_ui_integration.IntegrationTests.code
 
                     services.AddDbContext<LearnOnDbContext>(options =>
                     {
-                        options.UseInMemoryDatabase(Guid.NewGuid().ToString())
+                        options.UseInMemoryDatabase("test database")
                             .UseLoggerFactory(LoggerFactory.Create(builder1 => builder1.AddConsole()));
                     });
                 });
