@@ -21,7 +21,7 @@ namespace Learnon_ui_integration.IntegrationTests.code
         }
 
         [Fact]
-        public async void RunTestsAsCode()
+        public async void Should_Success_Register_Two_Accounts()
         {
             //Arrange
             CreateAccountRequest[] createAccountRequests = new CreateAccountRequest[]
@@ -59,11 +59,11 @@ namespace Learnon_ui_integration.IntegrationTests.code
             //Assert
             foreach (var response in responseMessages)
             {
-                Assert.Equal(2,base._dbContext.Accounts.Count());
+                Assert.Equal(2, base._dbContext.Accounts.Count());
                 Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             }
 
-           IList<AccountEntity> foundAllAccounts = _dbContext.Accounts.ToList();
+            IList<AccountEntity> foundAllAccounts = _dbContext.Accounts.ToList();
             foreach (var accountEntity in foundAllAccounts)
             {
                 _testOutputHelper.WriteLine(accountEntity.ToString());
@@ -72,51 +72,145 @@ namespace Learnon_ui_integration.IntegrationTests.code
         }
 
         [Fact]
-        public async void Success_Account_Update()
+        public async void Should_Success_Account_Change_Password()
         {
+            //Verify database is empty
             Assert.Equal(0, _dbContext.Accounts.Count());
-            //Arrange
+
+            //Arrange (prepare account to save to database)
             AccountEntity arrangeCreateAccountRequest =
-                        new AccountEntity() {
+                        new AccountEntity()
+                        {
                             FirstName = "testImie",
                             LastName = "testNazwisko",
                             Email = "test@localhost.com",
                             Password = "test",
                             BirthDate = DateTime.Now,
                             Gender = "Nieznana"
-                          };
+                        };
+
             //Save the data to database
             _dbContext.Accounts.Add(arrangeCreateAccountRequest);
             _dbContext.SaveChanges();
 
+            //Verify database has one account
             Assert.Equal(1, _dbContext.Accounts.Count());
 
             //fetch created account id
-            AccountEntity foundedAccount = _dbContext.Accounts.First(account => 
+            AccountEntity foundedAccount = _dbContext.Accounts.First(account =>
                                             account.Email.Equals(arrangeCreateAccountRequest.Email));
 
             //And (prepare update account request)
-            UpdateAccountRequest arrangeUpdateAccountRequest = new UpdateAccountRequest(foundedAccount.Id, "test","test1","test1");
+            UpdateAccountRequest arrangeUpdateAccountRequest = new UpdateAccountRequest(foundedAccount.Id, "test", "test1", "test1");
 
             //Act
             HttpResponseMessage operationUpdateResult = await _client.PutAsync($"http://localhost:80/api/accounts/{arrangeUpdateAccountRequest.Id}",
                                                                               JsonContent.Create(arrangeUpdateAccountRequest));
-            //_dbContext.SaveChanges();
-            //_testOutputHelper.WriteLine(await operationUpdateResult.Content.ReadAsStringAsync());
-
-            IList<AccountEntity> foundAllAccounts = _dbContext.Accounts.ToList();
-            foreach (var accountEntity in foundAllAccounts)
-            {
-                _testOutputHelper.WriteLine(accountEntity.ToString());
-            }
-
 
             //Assert
-            Assert.Equal(HttpStatusCode.OK, operationUpdateResult.StatusCode);            
-            Assert.Equal(arrangeUpdateAccountRequest.NewPassword, 
-                        _dbContext.Accounts.First(x => x.Id== arrangeUpdateAccountRequest.Id).Password);
+            //TODO verify why it has old password, instead of updated password
+            //AccountEntity? updatedAccount = _dbContext.Accounts.First(x => x.Id == arrangeUpdateAccountRequest.Id);
 
+            HttpResponseMessage responseFoundAccount = await _client
+                .GetAsync($"http://localhost:80/api/accounts?email={arrangeCreateAccountRequest.Email}");
+            AccountResponse[] updatedAccount = await responseFoundAccount.Content.ReadAsAsync<AccountResponse[]>();
+
+            Assert.Equal(HttpStatusCode.OK, operationUpdateResult.StatusCode);
+            Assert.Equal(arrangeUpdateAccountRequest.NewPassword, updatedAccount[0].Password);
+        }
+
+        [Fact]
+        public async void Should_Success_Account_Find_By_Email_When_Database_Is_Empty()
+        {          
+            //Verify database is empty
+            Assert.Equal(0, _dbContext.Accounts.Count());
+
+            //Arrange
+            string arrangeNotExistingMail = "testMail@gmail.com";
+
+            //Act
+            HttpResponseMessage operationFoundAccounts = await _client.GetAsync($"http://localhost:5000/api/accounts/?email={arrangeNotExistingMail}");
+
+            //Assert
+            Assert.Equal(HttpStatusCode.NoContent, operationFoundAccounts.StatusCode);
+            AccountResponse?[] foundedAccount = await operationFoundAccounts.Content.ReadAsAsync<AccountResponse?[]>();
+            Assert.Null(foundedAccount);
+        }
+
+        [Fact]
+        public async void Should_Success_Account_Find_By_Email_When_Database_Has_Accounts_Without_Finding_Email()
+        {
+            //Verify database is empty
+            Assert.Equal(0, _dbContext.Accounts.Count());
+
+            //Arrange
+            AccountEntity arrangeCreateAccountRequest =
+                        new AccountEntity()
+                        {
+                            FirstName = "testImie",
+                            LastName = "testNazwisko",
+                            Email = "test@localhost.com",
+                            Password = "test",
+                            BirthDate = DateTime.Now,
+                            Gender = "Nieznana"
+                        };
+
+            //Save the data to database
+            _dbContext.Accounts.Add(arrangeCreateAccountRequest);
+            _dbContext.SaveChanges();
+
+            //Verify database has one account
+            Assert.Equal(1, _dbContext.Accounts.Count());
+
+
+            //And
+            string arrangeNotExistingMail = "testMail@gmail.com";
+
+            //Act
+            HttpResponseMessage operationFoundAccounts = await _client.GetAsync($"http://localhost:5000/api/accounts/?email={arrangeNotExistingMail}");
+
+            //Assert
+            Assert.Equal(HttpStatusCode.NoContent, operationFoundAccounts.StatusCode);
+            AccountResponse?[] foundedAccount = await operationFoundAccounts.Content.ReadAsAsync<AccountResponse?[]>();
+            Assert.Null(foundedAccount);
+        }
+
+        [Fact]
+        public async void Should_Success_Account_Find_By_Email_When_Database_Has_Accounts_With_Finding_Email()
+        {
+            //Verify database is empty
+            Assert.Equal(0, _dbContext.Accounts.Count());
+
+            //Arrange
+            AccountEntity arrangeCreateAccountRequest =
+                        new AccountEntity()
+                        {
+                            FirstName = "testImie",
+                            LastName = "testNazwisko",
+                            Email = "test@gmail.com",
+                            Password = "test",
+                            BirthDate = DateTime.Now,
+                            Gender = "Nieznana"
+                        };
+
+            //Save the data to database
+            _dbContext.Accounts.Add(arrangeCreateAccountRequest);
+            _dbContext.SaveChanges();
+
+            //Verify database has one account
+            Assert.Equal(1, _dbContext.Accounts.Count());
+
+            //And
+            string arrangeExistingMail = "test@gmail.com";
+
+            //Act           
+            HttpResponseMessage operationFoundAccounts = await _client.GetAsync($"http://localhost:5000/api/accounts/?email={arrangeExistingMail}");
+         
+            //Assert
+            Assert.Equal(HttpStatusCode.OK, operationFoundAccounts.StatusCode);
+            AccountResponse[] foundedAccount = await operationFoundAccounts.Content.ReadAsAsync<AccountResponse[]>();
+            Assert.Equal(1, foundedAccount.Length);
+            Assert.Equal(arrangeExistingMail, foundedAccount[0].Email);
         }
     }
-
 }

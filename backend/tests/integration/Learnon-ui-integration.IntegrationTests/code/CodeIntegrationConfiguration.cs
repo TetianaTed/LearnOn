@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using Learnon;
+using Learnon_ui_integration.Module.Account.Model.Database.Entity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -28,13 +29,17 @@ namespace Learnon_ui_integration.IntegrationTests.code
             TestWebApplicationFactory<Startup> factory2)
         {
             _testOutputHelper = testOutputHelper;
-            _client = factory2.CreateClient();
             _dbContext = factory2.Services.CreateScope().ServiceProvider.GetRequiredService<LearnOnDbContext>();
+            _client = factory2.CreateClient();
+            
         }
 
         public void Dispose()
         {
-            _dbContext.Database.EnsureDeleted();
+            //_dbContext.Database.EnsureDeleted();
+           IList<AccountEntity> allAccounts = _dbContext.Accounts.ToList();
+            _dbContext.Accounts.RemoveRange(allAccounts);
+            _dbContext.SaveChanges();
         }
 
         public sealed class TestWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
