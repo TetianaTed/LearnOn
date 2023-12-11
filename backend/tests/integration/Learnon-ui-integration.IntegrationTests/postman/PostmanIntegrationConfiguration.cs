@@ -15,7 +15,7 @@ namespace Learnon_ui_integration.IntegrationTests.postman
     {
         //private static bool isDebugMode = System.Diagnostics.Debugger.IsAttached;
 
-        protected readonly int serverPort = 5001;
+        protected readonly int serverPort = 5000;
 
         private readonly IHost _host;
 
@@ -49,7 +49,7 @@ namespace Learnon_ui_integration.IntegrationTests.postman
 
                         services.AddDbContext<LearnOnDbContext>(options =>
                         {
-                            options.UseInMemoryDatabase(Guid.NewGuid().ToString())
+                            options.UseInMemoryDatabase("test base")
                                 .UseLoggerFactory(LoggerFactory.Create(builder3 => builder3.AddConsole()));
                         });
                     });

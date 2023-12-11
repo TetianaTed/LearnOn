@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "9bbfa579-87c8-4780-a4cd-e90e620977bd",
+		"_postman_id": "fdacc310-c6b1-49a7-a1c8-a85dc54d5b63",
 		"name": "ExampleTests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "4755028"
+		"_exporter_id": "31053654"
 	},
 	"item": [
 		{
@@ -206,6 +206,24 @@
 												"all"
 											]
 										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "find",
+					"item": [
+						{
+							"name": "sucess",
+							"item": [
+								{
+									"name": "find no existing account by email",
+									"request": {
+										"method": "GET",
+										"header": []
 									},
 									"response": []
 								}

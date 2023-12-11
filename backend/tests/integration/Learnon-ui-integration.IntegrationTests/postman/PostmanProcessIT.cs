@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace Learnon_ui_integration.IntegrationTests.postman
 {
-    /*
+    
     public class PostmanProcessIT : PostmanIntegrationConfiguration
     {
         private readonly ITestOutputHelper _testOutputHelper;
@@ -28,6 +28,11 @@ namespace Learnon_ui_integration.IntegrationTests.postman
             string collectionPath = "ExampleTests.postman_collection.json";
             
             //Act
+            /*while (true)
+            {
+
+            }
+            */
             int exitedCode = RunPostmanCollectionTests(environmentPath, collectionPath).Result;
 
             //Assert
@@ -97,5 +102,5 @@ namespace Learnon_ui_integration.IntegrationTests.postman
             }
         }
     }
-    */
+    
 } 
