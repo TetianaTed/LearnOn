@@ -28,7 +28,7 @@ namespace Learnon_ui_integration.IntegrationTests.postman
             string collectionPath = "ExampleTests.postman_collection.json";
             
             //Act
-            /*while (true)
+            /* while (true)
             {
 
             }

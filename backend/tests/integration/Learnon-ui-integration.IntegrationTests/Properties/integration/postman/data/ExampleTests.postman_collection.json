@@ -92,13 +92,13 @@
 													"pm.test(\"Status test\", function () {\r",
 													"    postman.setNextRequest(null);\r",
 													"    pm.response.to.have.status(200);\r",
-													"    postman.setNextRequest();\r",
+													"    //postman.setNextRequest();\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Email not exists\", function() {\r",
 													"    postman.setNextRequest(null);\r",
 													"    pm.expect(jsonData.some(account => account.email == 'test.test@gmail.com' )).to.be.false\r",
-													"     postman.setNextRequest();\r",
+													"     //postman.setNextRequest();\r",
 													"});\r",
 													""
 												],
@@ -107,16 +107,17 @@
 										}
 									],
 									"request": {
-										"method": "GET",
+										"method": "POST",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/api/accounts/all",
+											"raw": "{{baseUrl}}/api/accounts/test/all",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
 												"accounts",
+												"test",
 												"all"
 											]
 										}
@@ -184,7 +185,7 @@
 													"        pm.response.to.have.status(200);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Id not exists\", function() {\r",
+													"pm.test(\"Email exists\", function() {\r",
 													"    pm.expect(jsonData.some(account => account.email == 'test.test@gmail.com' )).to.be.true\r",
 													"});"
 												],
@@ -193,17 +194,52 @@
 										}
 									],
 									"request": {
-										"method": "GET",
+										"method": "POST",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/api/accounts/all",
+											"raw": "{{baseUrl}}/api/accounts/test/all",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
 												"accounts",
+												"test",
 												"all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "clear table account",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status test\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/accounts/test/clear-database",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"accounts",
+												"test",
+												"clear-database"
 											]
 										}
 									},
@@ -224,6 +260,56 @@
 									"request": {
 										"method": "GET",
 										"header": []
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "sucess",
+							"item": [
+								{
+									"name": "verify database is empty",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();\r",
+													"\r",
+													"pm.test(\"Status test\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Database (table Account) is empty\", function() {\r",
+													"    pm.expect(jsonData.length).to.be.equal(0)\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/accounts/test/all",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"accounts",
+												"test",
+												"all"
+											]
+										}
 									},
 									"response": []
 								}

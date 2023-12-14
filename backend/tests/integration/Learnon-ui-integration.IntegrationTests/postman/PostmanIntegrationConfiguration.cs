@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using Learnon;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -52,6 +53,10 @@ namespace Learnon_ui_integration.IntegrationTests.postman
                             options.UseInMemoryDatabase("test base")
                                 .UseLoggerFactory(LoggerFactory.Create(builder3 => builder3.AddConsole()));
                         });
+
+                        //services.AddScoped<AccountHelperTestController>();
+                        //services.AddRouting();
+                        services.AddMvc().AddApplicationPart(Assembly.Load(new AssemblyName("Learnon-ui-integration.IntegrationTests")));
                     });
                 })
                 .Build();
