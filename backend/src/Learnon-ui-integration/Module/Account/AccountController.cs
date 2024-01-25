@@ -24,7 +24,16 @@ namespace Learnon_ui_integration.Module.Account
         public IActionResult Create([FromBody] CreateAccountRequest request) //[FromBody] - annotacja, atrybut od Web Api
         {
             _logger.LogInformation("Testowy logger");
-            _accountApi.Create(request);
+            
+            try
+            {
+                _accountApi.Create(request);
+            }
+            catch (Exception ex)
+            {
+
+                return base.StatusCode(500, ex.Message);
+            }
             return Created("", "abcd test");
         }
 

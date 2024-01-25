@@ -8,68 +8,7 @@
 	"item": [
 		{
 			"name": "exampleTestSuite",
-			"item": [
-				{
-					"name": "exampleTestCase",
-					"item": [
-						{
-							"name": "exampleFind",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var jsonData = pm.response.json();\r",
-											"\r",
-											"pm.test(\"Status test\", function () {\r",
-											"        pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"/*pm.test(\"Id exists\", function() {\r",
-											"    pm.expect(jsonData.created.id).to.not.equal(null);\r",
-											"});\r",
-											"\r",
-											"//pm.environment.set(\"createdId\", jsonData.created.id);\r",
-											"*/"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"strictSSL": false
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "default"
-									},
-									{
-										"key": "Authorization",
-										"value": "{{authorizeToken}}",
-										"type": "default"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/api/accounts/all",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"accounts",
-										"all"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
+			"item": []
 		},
 		{
 			"name": "Account",
@@ -159,14 +98,13 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/api/accounts/",
+											"raw": "{{baseUrl}}/api/accounts",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
-												"accounts",
-												""
+												"accounts"
 											]
 										}
 									},
@@ -246,6 +184,56 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "failure",
+							"item": [
+								{
+									"name": "[act] create account with not matched password [500]",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status test\", function () {\r",
+													"        pm.response.to.have.status(500);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Body contains password_not_match\", function() {\r",
+													"        pm.response.body === \"Password_not_match\";\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"firstName\": \"testImie\",\r\n  \"lastName\": \"testNazwisko\",\r\n  \"email\": \"test.test@gmail.com\",\r\n  \"password\": \"test\",\r\n  \"repeatPassword\": \"Test\",\r\n  \"birthDate\": \"2023-09-20T22:00:00.000Z\",\r\n  \"gender\": \"Nieznana\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/accounts/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"accounts",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				},
@@ -259,7 +247,7 @@
 									"name": "Account_Find_By_Email_When_Database_Has_Accounts_Without_Finding_Email",
 									"item": [
 										{
-											"name": "verify database is empty",
+											"name": "[verify] database is empty [200]",
 											"event": [
 												{
 													"listen": "test",
@@ -298,7 +286,7 @@
 											"response": []
 										},
 										{
-											"name": "create account",
+											"name": "[arrange] create account [201]",
 											"event": [
 												{
 													"listen": "test",
@@ -340,7 +328,7 @@
 											"response": []
 										},
 										{
-											"name": "verify database has one account",
+											"name": "[arrange] database has one account [200]",
 											"event": [
 												{
 													"listen": "test",
@@ -379,7 +367,7 @@
 											"response": []
 										},
 										{
-											"name": "find no existing email",
+											"name": "[act] find no existing email [204]",
 											"event": [
 												{
 													"listen": "test",
@@ -417,7 +405,7 @@
 											"response": []
 										},
 										{
-											"name": "clear table account",
+											"name": "[cleanup] clear table account [200]",
 											"event": [
 												{
 													"listen": "test",
@@ -456,7 +444,7 @@
 									"name": "Account_Find_By_Email_When_Database_Is_Empty",
 									"item": [
 										{
-											"name": "verify database is empty",
+											"name": "[verify] database is empty [200]",
 											"event": [
 												{
 													"listen": "test",
@@ -495,7 +483,7 @@
 											"response": []
 										},
 										{
-											"name": "find no existing email when database is empty",
+											"name": "[act] find no existing email when database is empty [204]",
 											"event": [
 												{
 													"listen": "test",
@@ -538,7 +526,7 @@
 									"name": "Account_Find_By_Email_When_Database_Has_Accounts_With_Finding_Email",
 									"item": [
 										{
-											"name": "verify database is empty",
+											"name": "[verify] database is empty [200]",
 											"event": [
 												{
 													"listen": "test",
@@ -577,7 +565,7 @@
 											"response": []
 										},
 										{
-											"name": "create account",
+											"name": "[arrange] create account [201]",
 											"event": [
 												{
 													"listen": "test",
@@ -619,7 +607,7 @@
 											"response": []
 										},
 										{
-											"name": "verify database has one account",
+											"name": "[arrange] database has one account [200]",
 											"event": [
 												{
 													"listen": "test",
@@ -658,7 +646,26 @@
 											"response": []
 										},
 										{
-											"name": "found account with email",
+											"name": "[act] found account with email [200]",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"var jsonData = pm.response.json();\r",
+															"\r",
+															"pm.test(\"Status test\", function () {\r",
+															"        pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test(\"Email exists\", function() {\r",
+															"    pm.expect(jsonData.some(account => account.email == 'test@gmail.com' )).to.be.true\r",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
 											"request": {
 												"method": "POST",
 												"header": [],
@@ -678,7 +685,7 @@
 											"response": []
 										},
 										{
-											"name": "clear table account",
+											"name": "[cleanup] clear table account [200]",
 											"event": [
 												{
 													"listen": "test",
@@ -865,7 +872,9 @@
 													"        pm.response.to.have.status(200);\r",
 													"});\r",
 													"\r",
-													"postman.setEnvironmentVariable(\"accountId\", null);\r",
+													"postman.clearEnvironmentVariable(\"accountId\");\r",
+													"\r",
+													"\r",
 													""
 												],
 												"type": "text/javascript"
