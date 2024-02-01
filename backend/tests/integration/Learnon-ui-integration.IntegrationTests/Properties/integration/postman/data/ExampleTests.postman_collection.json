@@ -990,6 +990,308 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "delete",
+					"item": [
+						{
+							"name": "sucess",
+							"item": [
+								{
+									"name": "Happy_Path_Delete_Account",
+									"item": [
+										{
+											"name": "[verify] database is empty [200]",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"var jsonData = pm.response.json();\r",
+															"\r",
+															"pm.test(\"Status test\", function () {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test(\"Database (table Account) is empty\", function(){\r",
+															"    pm.expect(jsonData.length).to.be.equal(0)\r",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/accounts/test/all",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"accounts",
+														"test",
+														"all"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "[arrange] create first account [201]",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Status test\", function() {\r",
+															"    pm.response.to.have.status(201);\r",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"firstName\": \"testImie\",\r\n  \"lastName\": \"testNazwisko\",\r\n  \"email\": \"test@localhost.com\",\r\n  \"password\": \"test\",\r\n  \"repeatPassword\": \"test\",\r\n  \"birthDate\": \"2023-09-20T22:00:00.000Z\",\r\n  \"gender\": \"Nieznana\"\r\n}\r\n",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/accounts/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"accounts",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "[arrange] create second account [201]",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Status test\", function() {\r",
+															"    pm.response.to.have.status(201);\r",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"firstName\": \"Marek\",\r\n  \"lastName\": \"Nowak\",\r\n  \"email\": \"marek.nowak@gmail.com\",\r\n  \"password\": \"nowak\",\r\n  \"repeatPassword\": \"nowak\",\r\n  \"birthDate\": \"1990-09-20T22:00:00.000Z\",\r\n  \"gender\": \"Nieznana\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/accounts/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"accounts",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "[arrange] database has two accounts [200]",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"var jsonData = pm.response.json();\r",
+															"\r",
+															"pm.test(\"Status test\", function () {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test(\"Database (table Account) has two accounts\", function(){\r",
+															"    pm.expect(jsonData.length).to.be.equal(2)\r",
+															"});\r",
+															"\r",
+															"pm.test(\"Database (table Account) has accounts with emails: ['test@localhost.com','marek.nowak@gmail.com']\", function(){\r",
+															"    ['test@localhost.com','marek.nowak@gmail.com'].forEach(email=>{\r",
+															"        pm.expect(jsonData.some(account => account.email === email)).to.be.true\r",
+															"    });  \r",
+															"\r",
+															"//the same as above in old style\r",
+															"    for (let email of ['test@localhost.com','marek.nowak@gmail.com'])\r",
+															"    {\r",
+															"        pm.expect(jsonData.some(account => account.email === email)).to.be.true\r",
+															"    } \r",
+															"});\r",
+															"\r",
+															"postman.setEnvironmentVariable(\"accountId\", jsonData.find(account => account.email === 'test@localhost.com').id);\r",
+															"\r",
+															"\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/accounts/test/all",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"accounts",
+														"test",
+														"all"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "[act] delete account with email test@localhost.com",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Status test\", function () {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"postman.clearEnvironmentVariable(\"accountId\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/accounts/{{accountId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"accounts",
+														"{{accountId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "[arrange] database has one account with email marek.nowak@gmail.com [200]",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"var jsonData = pm.response.json();\r",
+															"\r",
+															"pm.test(\"Status test\", function () {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test(\"Database (table Account) has one account with email marek.nowak@gmail.com\", function(){\r",
+															"    pm.expect(jsonData.length).to.be.equal(1);\r",
+															"    pm.expect(jsonData.some(account => account.email === 'marek.nowak@gmail.com')).to.be.true\r",
+															"});\r",
+															"\r",
+															"\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/accounts/test/all",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"accounts",
+														"test",
+														"all"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "[cleanup] clear table account [200]",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Status test\", function () {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/accounts/test/clear-database",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"accounts",
+														"test",
+														"clear-database"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						}
+					]
 				}
 			]
 		}
