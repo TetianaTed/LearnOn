@@ -5,9 +5,9 @@ namespace Learnon_ui_integration.Module.Account.Logic
 {
     internal class AccountFacade : IAccountApi
     {
-        private readonly ILogger<AccountFacade> _logger;
+        private readonly ILogger<IAccountApi> _logger;
 		private readonly IAccountRepository _accountRepository;	
-        public AccountFacade(ILogger<AccountFacade> logger, IAccountRepository accountRepository)
+        public AccountFacade(ILogger<IAccountApi> logger, IAccountRepository accountRepository)
 		{
 			_logger = logger;
 			_accountRepository = accountRepository;

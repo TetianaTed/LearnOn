@@ -7,7 +7,12 @@ namespace Learnon_ui_integration.Module.Account.Logic
         public void Configure(IServiceCollection services)
         {
             services.AddScoped<IAccountRepository, AccountRepository>();
-            services.AddScoped<IAccountApi, AccountFacade>();          
+            services.AddScoped<IAccountApi, AccountFacade>();                           
+        }
+
+        public static IAccountApi Create(IAccountRepository repository, ILogger<IAccountApi> logger)
+        {
+            return new AccountFacade(logger, repository);
         }
     }
 }

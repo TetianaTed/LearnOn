@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "integration", "integration"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Learnon-ui-integration.IntegrationTests", "backend\tests\integration\Learnon-ui-integration.IntegrationTests\Learnon-ui-integration.IntegrationTests.csproj", "{A7D1D7CD-4236-407D-AFFF-5333D653A09D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learnon-ui-integration.Tests", "Learnon-ui-integration.Tests\Learnon-ui-integration.Tests.csproj", "{689CC4EC-A5F2-448A-9393-E0564D788340}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{A7D1D7CD-4236-407D-AFFF-5333D653A09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7D1D7CD-4236-407D-AFFF-5333D653A09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7D1D7CD-4236-407D-AFFF-5333D653A09D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{689CC4EC-A5F2-448A-9393-E0564D788340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{689CC4EC-A5F2-448A-9393-E0564D788340}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{689CC4EC-A5F2-448A-9393-E0564D788340}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{689CC4EC-A5F2-448A-9393-E0564D788340}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{868EED0D-E903-46B6-9336-E76D95B39072} = {9BD40F8C-7ECB-4AF9-A042-2F8167A5AF3E}
 		{800AA132-ED58-48BE-ABEB-AC424EB16455} = {9BD40F8C-7ECB-4AF9-A042-2F8167A5AF3E}
 		{A7D1D7CD-4236-407D-AFFF-5333D653A09D} = {800AA132-ED58-48BE-ABEB-AC424EB16455}
+		{689CC4EC-A5F2-448A-9393-E0564D788340} = {868EED0D-E903-46B6-9336-E76D95B39072}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37437A34-D758-4DD8-863A-4370961C52A9}
